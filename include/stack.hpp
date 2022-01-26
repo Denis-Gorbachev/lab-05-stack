@@ -70,7 +70,8 @@ void Stack<T>::push_emplace(Args&&... value) {
     new_stack[i] = stack[i];
   }
   for (int i = size; i < size + arg_size; ++i){
-    new_stack[i] = args_stack[i - size];
+    int a = args_stack[i - size];
+    new_stack[i] = a;
   }
   delete stack;
   stack = new_stack;
