@@ -13,8 +13,8 @@ TEST(method_tests, r_push) {
 }
 TEST(method_tests, push_emplace) {
   Stack<int> stack;
-  stack.push_emplace(1, 2, 3, 4);
-  EXPECT_EQ(stack.head(), 4);
+  stack.push_emplace(1, 2);
+  EXPECT_EQ(stack.head(), 2);
 }
 TEST(method_tests, pop) {
   Stack<int> stack;
