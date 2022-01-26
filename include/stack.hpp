@@ -22,7 +22,7 @@ template <typename T>
 void Stack<T>::push(T&& value){
   size++;
   T* new_stack = new T(size);
-  for(int i = 0; i < size - 1; i++){
+  for (int i = 0; i < size - 1; i++){
     new_stack[i] = stack[i];
   }
   new_stack[size-1] = value;
@@ -34,7 +34,7 @@ template <typename T>
 void Stack<T>::push(const T& value) {
   size++;
   T* new_stack = new T(size);
-  for(int i = 0; i < size - 1; i++){
+  for (int i = 0; i < size - 1; i++){
     new_stack[i] = stack[i];
   }
   new_stack[size-1] = value;
@@ -48,7 +48,7 @@ void Stack<T>::pop() {
     throw std::runtime_error("Stack is empty");
   size--;
   T* new_stack = new T(size);
-  for(int i = 0; i < size; i++){
+  for (int i = 0; i < size; i++){
     new_stack[i] = stack[i];
   }
   delete stack;
@@ -66,7 +66,7 @@ void Stack<T>::push_emplace(Args&&... value) {
   const int arg_size = sizeof...(Args);
   T* new_stack = new T(size + arg_size);
   T args_stack[arg_size] = {value...};
-  for(int i = 0; i < size; ++i){
+  for (int i = 0; i < size; ++i){
     new_stack[i] = stack[i];
   }
   for (int i = size; i < size + arg_size; ++i){
