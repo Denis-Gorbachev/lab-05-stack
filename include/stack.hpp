@@ -63,17 +63,17 @@ const T& Stack<T>::head() const {
 template <typename T>
 template <typename ...Args>
 void Stack<T>::push_emplace(Args&&... value) {
-  const int arg_size = sizeof...(Args);
-  T* new_stack = new T(size + arg_size);
-  T args_stack[arg_size] = {value...};
+  int arg_size = sizeof...(Args);
+  T* new_stack = new T[size + arg_size];
+  T* args_stack = new T[arg_size] {value...};
   for (int i = 0; i < size; ++i){
     new_stack[i] = stack[i];
   }
   for (int i = size; i < size + arg_size; ++i){
-    int a = args_stack[i - size];
-    new_stack[i] = a;
+    new_stack[i] = args_stack[i - size];
   }
   delete stack;
+  delete[] args_stack;
   stack = new_stack;
   size += sizeof...(Args);
 }

@@ -13,6 +13,7 @@ TEST(method_tests, r_push) {
 }
 TEST(method_tests, push_emplace) {
   Stack<int> stack;
+  stack.push(2);
   stack.push_emplace(1, 2);
   EXPECT_EQ(stack.head(), 2);
 }
