@@ -51,7 +51,7 @@ void Stack<T>::pop() {
   for (int i = 0; i < size; i++){
     new_stack[i] = stack[i];
   }
-  delete stack;
+  delete[] stack;
   stack = new_stack;
 }
 
