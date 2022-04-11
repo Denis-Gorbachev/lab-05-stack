@@ -53,14 +53,6 @@ TEST(constructor_tests, default_constructor) {
   EXPECT_EQ(copyableStackEmpty.head().value, NULL);
 }
 
-TEST(StackFixture, Constructors)
-{
-  EXPECT_EQ(std::is_move_constructible_v<stack_copyable<int>>, true);
-  EXPECT_EQ(std::is_copy_constructible_v<stack_copyable<int>>, false);
-  EXPECT_EQ(std::is_move_assignable_v<stack_copyable<int>>, true);
-  EXPECT_EQ(std::is_copy_assignable_v<stack_copyable<int>>, false);
-}
-
 TEST(StackFixture, PushMove)
 {
   std::string string{"I am a string"};
