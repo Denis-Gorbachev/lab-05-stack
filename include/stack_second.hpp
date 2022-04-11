@@ -5,14 +5,14 @@
 #include <utility>
 
 template <typename T>
-class Stack {
+class stack_copyable {
  public:
-  Stack();
-  explicit Stack(const T& a) = delete;
-  explicit Stack(T&& a);
-  ~Stack();
-  auto operator=(const T &a) -> Stack<T>& = delete;
-  auto operator=(T &&a) -> Stack<T>&;
+  stack_copyable();
+  explicit stack_copyable(const T& a) = delete;
+  explicit stack_copyable(T&& a);
+  ~stack_copyable();
+  auto operator=(const T &a) -> stack_copyable<T>& = delete;
+  auto operator=(T &&a) -> stack_copyable<T>&;
   template <typename... Args>
   void push_emplace(Args&&... value);
   void push(T&& value);
@@ -28,20 +28,20 @@ class Stack {
 };
 
 template <typename T>
-Stack<T>::Stack() {
+stack_copyable<T>::stack_copyable() {
   top_node = new Node;
   top_node->next = nullptr;
 }
 
 template <typename T>
-Stack<T>::Stack(T&& a) {
+stack_copyable<T>::stack_copyable(T&& a) {
   top_node = new Node;
   top_node->val = a;
   top_node->next = nullptr;
 }
 
 template <typename T>
-auto Stack<T>::operator=(T&& a) -> Stack<T>& {
+auto stack_copyable<T>::operator=(T&& a) -> stack_copyable<T>& {
   top_node = new Node;
   top_node->val = a;
   top_node->next = nullptr;
@@ -49,7 +49,7 @@ auto Stack<T>::operator=(T&& a) -> Stack<T>& {
 }
 
 template <typename T>
-Stack<T>::~Stack() {
+stack_copyable<T>::~stack_copyable() {
   while (top_node->next != nullptr){
     Node *new_node = top_node;
     top_node = top_node->next;
@@ -59,15 +59,13 @@ Stack<T>::~Stack() {
 }
 
 template <typename T>
-void Stack<T>::push(T&& value) {
+void stack_copyable<T>::push(T&& value) {
   Node *new_node = new Node{std::forward<T>(value), top_node};
-//  new_node->val = value;
-//  new_node->next = top_node;
   top_node = new_node;
 }
 
 template <typename T>
-T Stack<T>::pop() {
+T stack_copyable<T>::pop() {
   if (top_node == nullptr)
     throw std::runtime_error("stack is empty");
   Node *node = top_node;
@@ -76,16 +74,15 @@ T Stack<T>::pop() {
 }
 
 template <typename T>
-const T& Stack<T>::head() const {
-  const std::string s = "stack is empty";
+const T& stack_copyable<T>::head() const {
   if (top_node == nullptr)
-    throw std::runtime_error(s);
+    throw std::runtime_error("stack is empty");
   return top_node->val;
 }
 
 template <typename T>
 template <typename ...Args>
-void Stack<T>::push_emplace(Args&&... value) {
+void stack_copyable<T>::push_emplace(Args&&... value) {
   auto *new_node = top_node;
   top_node = new Node{std::forward<Args>(value)..., new_node};
 }

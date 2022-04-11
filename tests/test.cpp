@@ -21,11 +21,11 @@ class StackTest{
     int value = 0;
   };
 };
-  stack<StackTest::Copyable> copyableStack{};
-  stack<StackTest::Copyable> copyableStackEmpty{};
-  Stack<StackTest::NotCopyable> notCopyableStack{};
-  Stack<StackTest::NotCopyable> notCopyableStackEmpty{};
-  stack<std::string> stringStackEmpty{};
+stack_not_copyable<StackTest::Copyable> copyableStack{};
+stack_not_copyable<StackTest::Copyable> copyableStackEmpty{};
+stack_copyable<StackTest::NotCopyable> notCopyableStack{};
+stack_copyable<StackTest::NotCopyable> notCopyableStackEmpty{};
+  stack_not_copyable<std::string> stringStackEmpty{};
   void SetUp()
   {
     copyableStack.push({1});
@@ -56,10 +56,10 @@ TEST(constructor_tests, default_constructor) {
 
 //TEST(StackFixture, Constructors)
 //{
-//  EXPECT_EQ(std::is_move_constructible_v<Stack<int>>, true);
-//  EXPECT_EQ(std::is_copy_constructible_v<Stack<int>>, false);
-//  EXPECT_EQ(std::is_move_assignable_v<Stack<int>>, true);
-//  EXPECT_EQ(std::is_copy_assignable_v<Stack<int>>, false);
+//  EXPECT_EQ(std::is_move_constructible_v<stack_copyable<int>>, true);
+//  EXPECT_EQ(std::is_copy_constructible_v<stack_copyable<int>>, false);
+//  EXPECT_EQ(std::is_move_assignable_v<stack_copyable<int>>, true);
+//  EXPECT_EQ(std::is_copy_assignable_v<stack_copyable<int>>, false);
 //}
 
 TEST(StackFixture, PushMove)
