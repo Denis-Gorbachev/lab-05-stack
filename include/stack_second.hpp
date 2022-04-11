@@ -83,8 +83,10 @@ const T& stack_copyable<T>::head() const {
 template <typename T>
 template <typename ...Args>
 void stack_copyable<T>::push_emplace(Args&&... value) {
-  auto *new_node = top_node;
-  top_node = new Node{std::forward<Args>(value)..., new_node};
+  for(auto i: {value...}) {
+    auto *new_node = top_node;
+    top_node = new Node{i, new_node};
+  }
 }
 
 #endif // INCLUDE_STACK_SECOND_HPP_

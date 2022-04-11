@@ -45,7 +45,6 @@ TEST(StackFixture, TestForTest)
 {
   EXPECT_EQ(std::is_move_constructible_v<StackTest::Copyable>, true);
   EXPECT_EQ(std::is_copy_constructible_v<StackTest::Copyable>, true);
-
   EXPECT_EQ(std::is_move_constructible_v<StackTest::NotCopyable>, true);
   EXPECT_EQ(std::is_copy_constructible_v<StackTest::NotCopyable>, false);
 }
@@ -54,19 +53,18 @@ TEST(constructor_tests, default_constructor) {
   EXPECT_EQ(copyableStackEmpty.head().value, NULL);
 }
 
-//TEST(StackFixture, Constructors)
-//{
-//  EXPECT_EQ(std::is_move_constructible_v<stack_copyable<int>>, true);
-//  EXPECT_EQ(std::is_copy_constructible_v<stack_copyable<int>>, false);
-//  EXPECT_EQ(std::is_move_assignable_v<stack_copyable<int>>, true);
-//  EXPECT_EQ(std::is_copy_assignable_v<stack_copyable<int>>, false);
-//}
+TEST(StackFixture, Constructors)
+{
+  EXPECT_EQ(std::is_move_constructible_v<stack_copyable<int>>, true);
+  EXPECT_EQ(std::is_copy_constructible_v<stack_copyable<int>>, false);
+  EXPECT_EQ(std::is_move_assignable_v<stack_copyable<int>>, true);
+  EXPECT_EQ(std::is_copy_assignable_v<stack_copyable<int>>, false);
+}
 
 TEST(StackFixture, PushMove)
 {
   std::string string{"I am a string"};
   stringStackEmpty.push(std::move(string));
-
   EXPECT_EQ(stringStackEmpty.head(), std::string{"I am a string"});
 }
 
@@ -74,22 +72,19 @@ TEST(StackFixture, PushCopy)
 {
   StackTest::Copyable copyable{60};
   copyableStackEmpty.push(copyable);
-
   EXPECT_EQ(copyableStackEmpty.head().value, 60);
 }
 
-//TEST(StackFixture, PushEmplace)
-//{
-//  notCopyableStackEmpty.push_emplace(600);
-//
-//  EXPECT_EQ(notCopyableStackEmpty.head().value, 600);
-//}
+TEST(StackFixture, PushEmplace)
+{
+  notCopyableStackEmpty.push_emplace(600);
+  EXPECT_EQ(notCopyableStackEmpty.head().value, 600);
+}
 
 TEST(StackFixture, PopSfinaeNotCopy)
 {
   using PopType = decltype(notCopyableStack.pop());
   constexpr bool isSame = std::is_same_v<PopType, StackTest::NotCopyable>;
-
   EXPECT_EQ(isSame, true);
 }
 
@@ -97,21 +92,19 @@ TEST(StackFixture, PopSfinaeCopy)
 {
   using PopType = decltype(copyableStack.pop());
   constexpr bool isSame = std::is_same_v<PopType, void>;
-
   EXPECT_EQ(isSame, true);
 }
 
-//TEST(StackFixture, PopCopy)
-//{
-//  EXPECT_EQ(copyableStack.head().value, 5);
-//
-//  copyableStack.pop();
-//
-//  EXPECT_EQ(copyableStack.head().value, 4);
-//}
-//
-//
-//TEST(StackFixture, Head)
-//{
-//  EXPECT_EQ(copyableStack.head().value, 5);
-//}
+TEST(StackFixture, PopCopy)
+{
+  ::SetUp();
+  EXPECT_EQ(copyableStack.head().value, 5);
+  copyableStack.pop();
+  EXPECT_EQ(copyableStack.head().value, 4);
+}
+
+TEST(StackFixture, Head)
+{
+  ::SetUp();
+  EXPECT_EQ(copyableStack.head().value, 5);
+}
