@@ -77,7 +77,7 @@ TEST(StackFixture, PushCopy)
 
 TEST(StackFixture, PushEmplace)
 {
-  notCopyableStackEmpty.push_emplace(600);
+  notCopyableStackEmpty.push_emplace(1, 2, 3, 600);
   EXPECT_EQ(notCopyableStackEmpty.head().value, 600);
 }
 
