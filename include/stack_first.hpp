@@ -9,8 +9,8 @@ template <typename T>
 class stack {
  public:
   stack();
-  stack(const T& a) = delete;
-  stack(T&& a);
+  explicit stack(const T& a) = delete;
+  explicit stack(T&& a);
   ~stack();
   auto operator=(const T &a) -> stack<T>& = delete;
   auto operator=(T &&a) -> stack<T>&;

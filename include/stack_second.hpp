@@ -8,8 +8,8 @@ template <typename T>
 class Stack {
  public:
   Stack();
-  Stack(const T& a) = delete;
-  Stack(T&& a);
+  explicit Stack(const T& a) = delete;
+  explicit Stack(T&& a);
   ~Stack();
   auto operator=(const T &a) -> Stack<T>& = delete;
   auto operator=(T &&a) -> Stack<T>&;
@@ -77,8 +77,9 @@ T Stack<T>::pop() {
 
 template <typename T>
 const T& Stack<T>::head() const {
+  const std::string s = "stack is empty";
   if (top_node == nullptr)
-    throw std::runtime_error("stack is empty");
+    throw std::runtime_error(s);
   return top_node->val;
 }
 
