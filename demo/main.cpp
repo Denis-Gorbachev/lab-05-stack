@@ -1,5 +1,5 @@
-#include <example.hpp>
+#include <stack_second.hpp>
 
 int main() {
-  example();
+  return 0;
 }
