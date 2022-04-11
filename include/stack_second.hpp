@@ -67,7 +67,7 @@ void stack_copyable<T>::push(T&& value) {
 template <typename T>
 T stack_copyable<T>::pop() {
   if (top_node == nullptr)
-    throw std::runtime_error("stack is empty");
+    throw std::exception();
   Node *node = top_node;
   top_node = top_node->next;
   return node->val;
@@ -76,7 +76,7 @@ T stack_copyable<T>::pop() {
 template <typename T>
 const T& stack_copyable<T>::head() const {
   if (top_node == nullptr)
-    throw std::runtime_error("stack is empty");
+    throw std::exception()
   return top_node->val;
 }
 

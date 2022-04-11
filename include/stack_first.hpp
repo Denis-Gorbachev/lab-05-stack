@@ -4,7 +4,6 @@
 #define INCLUDE_STACK_FIRST_HPP_
 #include <utility>
 #include <stdexcept>
-using namespace std;
 template <typename T>
 class stack_not_copyable {
  public:
@@ -73,7 +72,7 @@ void stack_not_copyable<T>::push(T&& value) {
 template <typename T>
 void stack_not_copyable<T>::pop() {
   if (top_node == nullptr)
-    throw runtime_error("stack is empty");
+    throw std::exception();
   Node *node = top_node;
   top_node = top_node->next;
   delete node->next;
@@ -83,7 +82,7 @@ void stack_not_copyable<T>::pop() {
 template <typename T>
 const T& stack_not_copyable<T>::head() const {
   if (top_node == nullptr)
-    throw runtime_error("stack is empty");
+    throw std::exception();
   return top_node->val;
 }
 
