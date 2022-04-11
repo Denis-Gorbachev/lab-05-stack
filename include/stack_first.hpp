@@ -3,7 +3,7 @@
 #ifndef INCLUDE_STACK_FIRST_HPP_
 #define INCLUDE_STACK_FIRST_HPP_
 #include <utility>
-#include <stdexcept>
+#include <exception>
 template <typename T>
 class stack_not_copyable {
  public:

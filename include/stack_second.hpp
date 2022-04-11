@@ -3,7 +3,7 @@
 #ifndef INCLUDE_STACK_SECOND_HPP_
 #define INCLUDE_STACK_SECOND_HPP_
 #include <utility>
-
+#include <exception>
 template <typename T>
 class stack_copyable {
  public:
