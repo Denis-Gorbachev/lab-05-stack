@@ -76,7 +76,7 @@ T stack_copyable<T>::pop() {
 template <typename T>
 const T& stack_copyable<T>::head() const {
   if (top_node == nullptr)
-    throw std::exception()
+    throw std::exception();
   return top_node->val;
 }
 
