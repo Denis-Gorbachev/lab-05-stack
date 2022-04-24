@@ -21,7 +21,7 @@ class stack_not_copyable {
  private:
   struct Node{
     T val;
-    Node *next;
+    Node *next = nullptr;
   };
   Node *top_node = nullptr;
 };
