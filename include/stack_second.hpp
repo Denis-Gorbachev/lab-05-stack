@@ -7,12 +7,12 @@
 template <typename T>
 class stack_copyable {
  public:
-  stack_copyable();
-  explicit stack_copyable(const T& a) = delete;
-  explicit stack_copyable(T&& a);
+  stack_copyable() = default;
+  explicit stack_copyable(const stack_copyable& a) = delete;
+  stack_copyable(stack_copyable&& a) noexcept = default;
   ~stack_copyable();
-  auto operator=(const T &a) -> stack_copyable<T>& = delete;
-  auto operator=(T &&a) -> stack_copyable<T>&;
+  auto operator=(const stack_copyable &a) -> stack_copyable<T>& = delete;
+  auto operator=(stack_copyable &&a)  noexcept -> stack_copyable<T>& = default;
   template <typename... Args>
   void push_emplace(Args&&... value);
   void push(T&& value);
@@ -26,27 +26,6 @@ class stack_copyable {
   };
   Node *top_node;
 };
-
-template <typename T>
-stack_copyable<T>::stack_copyable() {
-  top_node = new Node;
-  top_node->next = nullptr;
-}
-
-template <typename T>
-stack_copyable<T>::stack_copyable(T&& a) {
-  top_node = new Node;
-  top_node->val = a;
-  top_node->next = nullptr;
-}
-
-template <typename T>
-auto stack_copyable<T>::operator=(T&& a) -> stack_copyable<T>& {
-  top_node = new Node;
-  top_node->val = a;
-  top_node->next = nullptr;
-  return *this;
-}
 
 template <typename T>
 stack_copyable<T>::~stack_copyable() {

@@ -25,7 +25,7 @@ stack_not_copyable<StackTest::Copyable> copyableStack{};
 stack_not_copyable<StackTest::Copyable> copyableStackEmpty{};
 stack_copyable<StackTest::NotCopyable> notCopyableStack{};
 stack_copyable<StackTest::NotCopyable> notCopyableStackEmpty{};
-stack_not_copyable<std::string> stringStackEmpty{};
+  stack_not_copyable<std::string> stringStackEmpty{};
   void SetUp()
   {
     copyableStack.push({1});
@@ -83,6 +83,7 @@ TEST(StackFixture, PopSfinaeCopy)
   constexpr bool isSame = std::is_same_v<PopType, void>;
   EXPECT_EQ(isSame, true);
 }
+
 TEST(StackFixture, PopCopy)
 {
   ::SetUp();
