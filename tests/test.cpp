@@ -87,13 +87,6 @@ TEST(StackFixture, PopSfinaeCopy)
   EXPECT_EQ(isSame, true);
 }
 
-TEST(StackFixture, PopCopy)
-{
-  ::SetUp();
-  EXPECT_EQ(copyableStack.head().value, 5);
-  copyableStack.pop();
-  EXPECT_EQ(copyableStack.head().value, 4);
-}
 
 TEST(StackFixture, Head)
 {
