@@ -11,8 +11,10 @@ class stack_not_copyable {
   stack_not_copyable(const stack_not_copyable& a) = delete;
   stack_not_copyable(stack_not_copyable&& a) noexcept = default;
   ~stack_not_copyable();
-  auto operator=(const stack_not_copyable &a) -> stack_not_copyable<T>& = delete;
-  auto operator=(stack_not_copyable &&a)  noexcept -> stack_not_copyable<T>& = default;
+  auto operator=(const stack_not_copyable &a)
+      -> stack_not_copyable<T>& = delete;
+  auto operator=(stack_not_copyable &&a)  noexcept
+      -> stack_not_copyable<T>& = default;
   void push(T&& value);
   void push(const T& value);
   void pop();
