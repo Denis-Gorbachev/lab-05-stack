@@ -49,6 +49,7 @@ TEST(StackFixture, TestForTest)
   EXPECT_EQ(std::is_copy_constructible_v<StackTest::NotCopyable>, false);
 }
 
+
 TEST(StackFixture, PushMove)
 {
   std::string string{"I am a string"};
