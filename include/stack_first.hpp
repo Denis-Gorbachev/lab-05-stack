@@ -30,12 +30,11 @@ class stack_not_copyable {
 
 template <typename T>
 stack_not_copyable<T>::~stack_not_copyable() {
-  while (top_node->next != nullptr){
+  while (top_node){
     Node *new_node = top_node;
     top_node = top_node->next;
     delete new_node;
   }
-  delete top_node;
 }
 
 template <typename T>
